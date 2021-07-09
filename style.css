@@ -1,5 +1,8 @@
 :root {
     --dark-blue: #363f5f;
+    --green: #49AA26;
+    --light-green: #3dd705;
+    --red: #e92929;
 }
 
 * {
@@ -48,7 +51,7 @@ a {
 }
 
 a:hover {
-    color: #3dd705;
+    color: var(--light-green);
 }
 
 button.new {
@@ -56,6 +59,42 @@ button.new {
     margin-bottom: .8rem;
 }
 
+.button.cancel {
+    color: var(--red);
+    border: 2px var(--red) solid;
+    border-radius: 0.25rem;
+
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.6;
+}
+
+.button.cancel:hover {
+    opacity: 1;
+}
+
+
+button {
+    width: 100%;
+    height: 50px;
+
+    border: none;
+    color: white;
+    background: var(--green);
+
+    padding: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+
+
+}
+
+button:hover {
+    background: #3dd705;
+}
 
 header {
     background: #2D4A22;
@@ -181,6 +220,8 @@ table tbody tr:hover {
 
     opacity: 0;
     visibility: hidden;
+
+    z-index: 999;
 }
 
 .modal-overlay.active {
@@ -191,7 +232,47 @@ table tbody tr:hover {
 .modal {
     background: #F0F2f5;
     padding: 2.4rem;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
 
+}
+
+
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    border-radius: 0.2rem;
+
+    padding: 0.8rem;
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group samll {
+    opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
 }
 
 
