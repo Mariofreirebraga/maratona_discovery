@@ -40,7 +40,8 @@ const transactions = [{
         description: 'App',
         amount: 200000,
         date: '23/01/2021'
-    }]
+    },
+]
 
 
 const Transaction = {
@@ -67,6 +68,10 @@ const DOM = {
     innerHTMLTransaction(transaction) {
         const CSSclass = transaction.amount > 0 ? "income" : "expense"
 
+        const amount = Utils.formatCurrency(transaction.amount)
+
+
+
         const html = `
 
         
@@ -81,13 +86,43 @@ const DOM = {
         `
 
         return html
+    },
+
+    updateBalance() {
+        document
+            .getElementById('incomeDisplay')
+            .innerHTML = "Soma das entradas"
+        document
+            .getElementById('expenseDisplay')
+            .innerHTML = "Soma das saidas"
+        document
+            .getElementById('totalDisplay')
+            .innerHTML = "Soma total"
+    }
+
+    }
+
+
+const Utils = {
+    formatCurrency(value) {
+        const signal = Number(value) < 0 ? "_" : ""
+
+        value = String(value).replace(/\D/g, "")
+
+        value = Number(value) / 100
+
+        value = value.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        return signal + value
     }
 }
 
-DOM.addTransaction(transactions[0])
-DOM.addTransaction(transactions[1])
-DOM.addTransaction(transactions[2])
 
 transactions.forEach(function (transaction){
     DOM.addTransaction(transaction)
 })
+
+DOM.updateBalance()
