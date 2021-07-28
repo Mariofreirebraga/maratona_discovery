@@ -1,12 +1,12 @@
 const Modal = {
-    open(){
+    open() {
         // Abrir modal
         // Adicionar a class active ao modal
         document
             .querySelector('.modal-overlay')
             .classList.add('active')
     },
-    close(){
+    close() {
         //fechar o modal
         //remover a class active do modal
         document
@@ -17,9 +17,8 @@ const Modal = {
 }
 
 
-
 const Transaction = {
-    all:[{
+    all: [{
 
         description: 'luz',
         amount: -50000,
@@ -43,7 +42,7 @@ const Transaction = {
             amount: 200000,
             date: '23/01/2021'
         }
-        ]
+    ]
     ,
 
     add(transaction) {
@@ -53,24 +52,24 @@ const Transaction = {
     },
 
     remove(index) {
-    transaction.all.splice(index, 1)
+        transaction.all.splice(index, 1)
 
-    App.reload()
+        App.reload()
     },
 
-    incomes () {
+    incomes() {
 
     },
-    expenses () {
+    expenses() {
 
     },
-    total () {
+    total() {
 
     }
 }
 
 const DOM = {
-    transactionsContainer:document.querySelector('#data-table tbody'),
+    transactionsContainer: document.querySelector('#data-table tbody'),
     addTransaction(transaction, index) {
 
         const tr = document.createEvent('tr')
@@ -82,7 +81,6 @@ const DOM = {
         const CSSclass = transaction.amount > 0 ? "income" : "expense"
 
         const amount = Utils.formatCurrency(transaction.amount)
-
 
 
         const html = `
@@ -113,11 +111,11 @@ const DOM = {
             .innerHTML = "Soma total"
     },
 
-    clearTransactions(){
+    clearTransactions() {
         DOM.transactionsContainer.innerHTML = ""
     }
 
-    }
+}
 
 
 const Utils = {
@@ -143,11 +141,11 @@ const Form = {
     date: document.querySelector('input#date'),
 
     getValues() {
-            return {
-                description: Form.description.value,
-                amount: Form.amount.value,
-                date: Form.date.value,
-            }
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date: Form.date.value,
+        }
     },
 
     formData() {
@@ -155,12 +153,12 @@ const Form = {
     },
 
     validateFields() {
-        const { description, amount, date } = Form.getValues()
+        const {description, amount, date} = Form.getValues()
 
-        if(description.trim() === "" ||
+        if (description.trim() === "" ||
             amount.trim() === "" ||
             date.trim() === "") {
-                throw new Error("Por favor, preencha todos os campos")
+            throw new Error("Por favor, preencha todos os campos")
         }
     },
     submit(event) {
@@ -174,7 +172,7 @@ const Form = {
 
 const App = {
     init() {
-        transaction.all.forEach (transaction => {
+        transaction.all.forEach(transaction => {
             DOM.addTransaction(transaction)
         })
 
